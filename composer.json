@@ -13,9 +13,9 @@
         "psr-4": {
             "Bow\\Cvs\\": "src/"
         },
-        "files": {
+        "files": [
             "src/helper.php"
-        }
+        ]
     },
     "minimum-stability": "dev",
     "require": {}
