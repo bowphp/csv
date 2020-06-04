@@ -1,6 +1,6 @@
 <?php
 
-namespace Bowphp\Csv;
+namespace Bow\Csv;
 
 trait CsvExporterTrait
 {

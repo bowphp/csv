@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Bowphp\\Cvs\\": "src/"
+            "Bow\\Cvs\\": "src/"
         },
         "files": {
             "src/helper.php"
