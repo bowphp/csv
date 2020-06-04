@@ -1,0 +1,22 @@
+{
+    "name": "bowphp/csv",
+    "description": "CSV formater for Bowphp",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Franck DAKIA",
+            "email": "dakiafranck@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Bowphp\\Cvs\\": "src/"
+        },
+        "files": {
+            "src/helper.php"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
