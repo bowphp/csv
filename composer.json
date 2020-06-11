@@ -18,5 +18,7 @@
         ]
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "league/csv": "^9.0@dev"
+    }
 }
