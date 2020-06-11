@@ -3,7 +3,7 @@
 namespace Bow\Csv;
 
 use Bow\Csv\CsvExporter;
-use League\Csv\Writer;
+use League\Csv\Writer as LeagueCsvWriter;
 
 trait CsvExporterTrait
 {
@@ -12,7 +12,18 @@ trait CsvExporterTrait
      *
      * @var array
      */
-    protected $cvs_headers = ["*"];
+    protected $csv_headers = ["*"];
+
+    /**
+     * Set the CSV headers
+     *
+     * @param array $headers
+     * @return void
+     */
+    public function setCsvHeaders(array $headers)
+    {
+        $this->csv_headers = $headers;
+    }
 
     /**
      * Export Csv
@@ -30,8 +41,9 @@ trait CsvExporterTrait
                 $headers = array_keys($collection->first()->toArray());
             }
         }
-        
-        $csv = Writer::createFromString('');
+
+        // Create the league instance
+        $csv = LeagueCsvWriter::createFromString('');
 
         // Insert the header
         $csv->insertOne($headers);

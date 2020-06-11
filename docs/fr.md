@@ -1,7 +1,7 @@
 ## Usage
 
 ```php
-use Bow\Csv\CsvExporter;
+use Bow\Csv\CsvExporterFactory;
 
-$csv = CsvExporter::make($headers, $data);
+$csv = CsvExporterFactory::build($headers, $data);
 ```

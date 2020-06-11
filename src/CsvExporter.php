@@ -2,23 +2,40 @@
 
 namespace Bow\Csv;
 
-use Bow\Database\Barry\Model;
+use League\Csv\Writer as LeagueCsvWriter;
 
 class CsvExporter
 {
     /**
-     * Export model as csv
+     * Define the instanceo of LeagueCsvWriter
      *
-     * @param Model $model
-     * @param array $headers
-     * @return array
+     * @var LeagueCsvWriter
      */
-    public static function model(Model $model)
+    private $writer;
+
+    /**
+     * CsvExporter constructor
+     *
+     * @param LeagueCsvWriter $writer
+     * @return void
+     */
+    public function __construct(LeagueCsvWriter $writer)
     {
-        if (!method_exists($model, 'exportToCvs')) {
-            throw new \InvalidArgumentException('Model must use \Bow\Csv\CsvExporterTrait::class trait');
+        $this->writer = $writer;
+    }
+
+    /**
+     * Export csv
+     *
+     * @param string $filename
+     * @return string
+     */
+    public function export(string $filename = null)
+    {
+        if (!is_null($filename)) {
+            return $csv->output('users.csv');
         }
 
-        return $model->exportToCvs();
+        return $this->writer->getContent();
     }
 }
