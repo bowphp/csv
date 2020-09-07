@@ -7,7 +7,7 @@ use League\Csv\Writer as LeagueCsvWriter;
 class CsvExporter
 {
     /**
-     * Define the instanceo of LeagueCsvWriter
+     * Define the instance of LeagueCsvWriter
      *
      * @var LeagueCsvWriter
      */
@@ -33,7 +33,7 @@ class CsvExporter
     public function export(string $filename = null)
     {
         if (!is_null($filename)) {
-            return $csv->output('users.csv');
+            return $this->writer->output(time().'.csv');
         }
 
         return $this->writer->getContent();
