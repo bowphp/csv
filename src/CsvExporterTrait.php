@@ -4,6 +4,7 @@ namespace Bow\Csv;
 
 use Bow\Csv\CsvExporter;
 use League\Csv\Writer as LeagueCsvWriter;
+use League\Csv\Reader as LeagueCsvReader;
 
 trait CsvExporterTrait
 {
@@ -66,7 +67,7 @@ trait CsvExporterTrait
      */
     public function importCsv($filename, array $headers)
     {
-        $csv = Reader::createFromPath($filename)->setHeaderOffset(0);
+        $csv = LeagueCsvReader::createFromPath($filename)->setHeaderOffset(0);
 
         // By setting the header offset we index all records
         // With the header record and remove it from the iteration

@@ -7,7 +7,7 @@ use League\Csv\Writer as LeagueCsvWriter;
 class CsvExporter
 {
     /**
-     * Define the instanceo of LeagueCsvWriter
+     * Define the instance of LeagueCsvWriter
      *
      * @var LeagueCsvWriter
      */
