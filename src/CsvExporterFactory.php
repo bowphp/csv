@@ -16,10 +16,6 @@ class CsvExporterFactory
      */
     public static function model(Model $model, array $headers)
     {
-        if (!method_exists($model, 'exportToCvs')) {
-            throw new \InvalidArgumentException('Model must use \Bow\Csv\CsvExporterTrait::class trait');
-        }
-
         $collection = $model->select($headers)->get();
 
         if ((count($headers) == 1 && $headers[0] == '*') || count($headers) == 0) {

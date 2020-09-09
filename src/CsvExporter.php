@@ -33,7 +33,7 @@ class CsvExporter
     public function export(string $filename = null)
     {
         if (!is_null($filename)) {
-            return $csv->output('users.csv');
+            return $csv->output($filename);
         }
 
         return $this->writer->getContent();
