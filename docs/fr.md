@@ -1,7 +1,19 @@
+## Installation
+
+```bash
+composer require bowphp/csv
+```
+
 ## Usage
 
-```php
-use Bow\Csv\CsvExporterFactory;
+C'est très simple d'utilisation
 
-$csv = CsvExporterFactory::build($headers, $data);
+```php
+use Bow\Csv\CsvExporter;
+
+$user = new App\Models\User;
+
+$csv = CsvExporter::model($user, ['id', 'name', 'description']);
+
+$csv->export();
 ```
