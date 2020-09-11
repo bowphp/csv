@@ -1,6 +1,6 @@
 # Bowphp CSV
 
-CSV formater for Bowphp
+CSV formatter for Bowphp
 
 ## Installation
 
