@@ -41,20 +41,8 @@ trait CsvExporterTrait
      * @param array $headers
      * @return mixed
      */
-    public function importCsv($filename)
+    public function importToCsv(string $filename)
     {
-        $csv = LeagueCsvReader::createFromPath($filename)->setHeaderOffset(0);
-
-        // By setting the header offset we index all records
-        // With the header record and remove it from the iteration
-        foreach ($csv as $record) {
-            $data = [];
-            foreach ($this->csv_headers as $header) {
-                $data[$header] = $record[$header];
-            }
-
-            $this->setAttributes($data);
-            $this->save();
-        }
+       return (new CsvExporterService)->import($this, $filename, $this->csv_headers);
     }
 }

@@ -4,6 +4,7 @@ namespace Bow\Csv;
 
 use Bow\Database\Barry\Model;
 use InvalidArgumentException;
+use League\Csv\Reader;
 use League\Csv\Writer as LeagueCsvWriter;
 
 class CsvExporterService
@@ -45,8 +46,28 @@ class CsvExporterService
         return new CsvExporter($csv);
     }
 
-    public function import()
+    /**
+     * Import csv filename into model
+     *
+     * @param Model $model
+     * @param string $filename
+     * @param array $headers
+     * @return void
+     */
+    public function import(Model $model, string $filename, array $headers)
     {
-        
+        $csv = Reader::createFromPath($filename)->setHeaderOffset(0);
+
+        // By setting the header offset we index all records
+        // With the header record and remove it from the iteration
+        foreach ($csv as $record) {
+            $data = [];
+            foreach ($headers as $header) {
+                $data[$header] = $record[$header];
+            }
+
+            $model->setAttributes($data);
+            $model->save();
+        }
     }
 }
