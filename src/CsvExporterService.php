@@ -5,9 +5,8 @@ namespace Bow\Csv;
 use Bow\Database\Barry\Model;
 use InvalidArgumentException;
 use League\Csv\Writer as LeagueCsvWriter;
-use SplTempFileObject;
 
-class CsvExporterFactory
+class CsvExporterService
 {
     /**
      * Export model as csv
@@ -16,7 +15,7 @@ class CsvExporterFactory
      * @param array $headers
      * @return array
      */
-    public static function model(Model $model, array $headers)
+    public function model(Model $model, array $headers = ['*'])
     {
         if (!method_exists($model, 'exportToCvs')) {
             throw new InvalidArgumentException('Model must use \Bow\Csv\CsvExporterTrait::class trait');
@@ -46,19 +45,8 @@ class CsvExporterFactory
         return new CsvExporter($csv);
     }
 
-    /**
-     * Build Csv
-     *
-     * @param array $headers
-     * @param array $records
-     */
-    public function build(array $headers, array $records)
+    public function import()
     {
-        $csv->insertOne($headers);
-
-        // We create the CSV into memory
-        $csv = LeagueCsvWriter::createFromFileObject(new SplTempFileObject());
-
-        $csv->insertAll($records);
+        
     }
 }

@@ -2,8 +2,6 @@
 
 namespace Bow\Csv;
 
-use Bow\Csv\CsvExporter;
-use League\Csv\Writer as LeagueCsvWriter;
 use League\Csv\Reader as LeagueCsvReader;
 
 trait CsvExporterTrait
@@ -31,31 +29,9 @@ trait CsvExporterTrait
      *
      * @return array
      */
-    public function exportToCsv()
+    public function toCsv()
     {
-        $collection = $this->select($this->cvs_headers)->get();
-
-        $headers = $this->cvs_headers;
-
-        if ((count($headers) == 1 && $headers[0] == '*') || count($headers) == 0) {
-            if ($collection->count()) {
-                $headers = array_keys($collection->first()->toArray());
-            }
-        }
-
-        // Create the league instance
-        $csv = LeagueCsvWriter::createFromString('');
-
-        // Insert the header
-        $csv->insertOne($headers);
-
-        // Insert all the records
-        $records = [];
-        foreach ($collection as $value) {
-            $records[] = array_values($value->toArray());
-        }
-
-        $csv->insertAll($records);
+        return (new CsvExporterService)->model($this, $this->csv_headers);
     }
 
     /**
@@ -65,7 +41,7 @@ trait CsvExporterTrait
      * @param array $headers
      * @return mixed
      */
-    public function importCsv($filename, array $headers)
+    public function importCsv($filename)
     {
         $csv = LeagueCsvReader::createFromPath($filename)->setHeaderOffset(0);
 
@@ -73,7 +49,7 @@ trait CsvExporterTrait
         // With the header record and remove it from the iteration
         foreach ($csv as $record) {
             $data = [];
-            foreach ($headers as $header) {
+            foreach ($this->csv_headers as $header) {
                 $data[$header] = $record[$header];
             }
 

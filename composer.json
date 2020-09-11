@@ -1,6 +1,6 @@
 {
     "name": "bowphp/csv",
-    "description": "CSV formater for Bowphp",
+    "description": "CSV formatter for Bowphp",
     "type": "library",
     "license": "MIT",
     "authors": [
