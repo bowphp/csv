@@ -18,7 +18,7 @@ class CsvExporterService
      */
     public function model(Model $model, array $headers = ['*'])
     {
-        if (!method_exists($model, 'exportToCvs')) {
+        if (!method_exists($model, 'toCsv')) {
             throw new InvalidArgumentException('Model must use \Bow\Csv\CsvExporterTrait::class trait');
         }
 
