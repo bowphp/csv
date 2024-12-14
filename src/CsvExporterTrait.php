@@ -29,7 +29,7 @@ trait CsvExporterTrait
      *
      * @return array
      */
-    public function toCsv()
+    public function toCsv(): array|CsvExporter
     {
         return (new CsvExporterService)->model($this, $this->csv_headers);
     }

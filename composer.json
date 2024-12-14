@@ -20,5 +20,8 @@
     "minimum-stability": "dev",
     "require": {
         "league/csv": "^9.0@dev"
+    },
+    "require-dev": {
+        "bowphp/framework": "5.x-dev"
     }
 }

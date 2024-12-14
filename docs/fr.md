@@ -1,4 +1,4 @@
-## Installation
+# Installation
 
 ```bash
 composer require bowphp/csv

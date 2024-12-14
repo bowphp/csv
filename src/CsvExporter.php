@@ -33,9 +33,9 @@ class CsvExporter
     public function export(string $filename = null)
     {
         if (!is_null($filename)) {
-            return $this->writer->output($filename);
+            return $this->writer->download($filename);
         }
 
-        return $this->writer->getContent();
+        return $this->writer->toString();
     }
 }

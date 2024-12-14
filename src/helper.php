@@ -8,12 +8,13 @@ if (!function_exists('bow_csv_importer')) {
      * CSV Formatter
      *
      * @param Model $model
+     * @param string $filename
      * @param array $headers
      * @return void
      */
-    function bow_csv_importer($model, array $headers = ['*'])
+    function bow_csv_importer(Model $model, string $filename, array $headers = ['*']): void
     {
-        return (new CsvExporterService)->model($model, $headers);
+        return (new CsvExporterService)->import($model, $filename, $headers);
     }
 }
 
@@ -23,9 +24,9 @@ if (!function_exists('bow_csv_exporter')) {
      *
      * @param Model $model
      * @param array $headers
-     * @return void
+     * @return array
      */
-    function bow_csv_exporter($model, array $headers = ['*'])
+    function bow_csv_exporter($model, array $headers = ['*']): array
     {
         return (new CsvExporterService)->model($model, $headers);
     }

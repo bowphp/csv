@@ -16,7 +16,7 @@ class CsvExporterService
      * @param array $headers
      * @return array
      */
-    public function model(Model $model, array $headers = ['*'])
+    public function model(Model $model, array $headers = ['*']): CsvExporter
     {
         if (!method_exists($model, 'toCsv')) {
             throw new InvalidArgumentException('Model must use \Bow\Csv\CsvExporterTrait::class trait');
@@ -54,7 +54,7 @@ class CsvExporterService
      * @param array $headers
      * @return void
      */
-    public function import(Model $model, string $filename, array $headers)
+    public function import(Model $model, string $filename, array $headers): void
     {
         $csv = Reader::createFromPath($filename)->setHeaderOffset(0);
 
