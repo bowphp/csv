@@ -11,7 +11,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Bow\\Cvs\\": "src/"
+            "Bow\\Csv\\": "src/",
+            "Tests\\": "tests/"
         },
         "files": [
             "src/helper.php"
@@ -22,6 +23,7 @@
         "league/csv": "^9.0@dev"
     },
     "require-dev": {
-        "bowphp/framework": "5.x-dev"
+        "bowphp/framework": "5.x-dev",
+        "phpunit/phpunit": "12.5.x-dev"
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-use Bow\Csv\CsvExporterService;
+use Bow\Csv\CsvService;
 use Bow\Database\Barry\Model;
 
-if (!function_exists('bow_csv_importer')) {
+if (!function_exists('app_import_csv_to_model')) {
     /**
      * CSV Formatter
      *
@@ -12,13 +12,13 @@ if (!function_exists('bow_csv_importer')) {
      * @param array $headers
      * @return void
      */
-    function bow_csv_importer(Model $model, string $filename, array $headers = ['*']): void
+    function app_import_csv_to_model(Model $model, string $filename, array $headers = ['*'])
     {
-        return (new CsvExporterService)->import($model, $filename, $headers);
+        (new CsvService())->import($model, $filename, $headers);
     }
 }
 
-if (!function_exists('bow_csv_exporter')) {
+if (!function_exists('app_export_model_to_csv')) {
     /**
      * CSV Formatter
      *
@@ -26,8 +26,8 @@ if (!function_exists('bow_csv_exporter')) {
      * @param array $headers
      * @return array
      */
-    function bow_csv_exporter($model, array $headers = ['*']): array
+    function app_export_model_to_csv($model, ?string $filename,array $headers = ['*']): string|int
     {
-        return (new CsvExporterService)->model($model, $headers);
+        return (new CsvService())->export($model, $filename, $headers);
     }
 }

@@ -2,9 +2,7 @@
 
 namespace Bow\Csv;
 
-use League\Csv\Reader as LeagueCsvReader;
-
-trait CsvExporterTrait
+trait Csv
 {
     /**
      * Define the CSV headers
@@ -29,9 +27,9 @@ trait CsvExporterTrait
      *
      * @return array
      */
-    public function toCsv(): array|CsvExporter
+    public function toCsv(?string $filename = null): string|int
     {
-        return (new CsvExporterService)->model($this, $this->csv_headers);
+        return (new CsvService())->export($this, $filename, $this->csv_headers);
     }
 
     /**
@@ -41,8 +39,8 @@ trait CsvExporterTrait
      * @param array $headers
      * @return mixed
      */
-    public function importToCsv(string $filename)
+    public function importCsv(string $filename)
     {
-       return (new CsvExporterService)->import($this, $filename, $this->csv_headers);
+       return (new CsvService())->import($this, $filename, $this->csv_headers);
     }
 }
